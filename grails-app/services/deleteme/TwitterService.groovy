@@ -93,6 +93,18 @@ class TwitterService {
             return true;
        }
     }
+    public ResponseList<Status>  getTweets(){
+        Paging p  = new Paging(1,20);
+        int id = 21710028;
+        ResponseList<Status> l;
+        for (long i :twitter.getFollowersIDs()){
 
+        l = twitter.getUserListStatuses(i,p);
+
+            println("lista service: "+twitter.getUserListStatuses(i,p).size())
+        }
+
+        return l;
+    }
 
 }
