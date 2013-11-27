@@ -107,4 +107,16 @@ class TwitterService {
         return l;
     }
 
+    public void timeLineAmigo(){
+
+        ResponseList<Status> tweetsAmigo = twitter.getUserTimeline("deswebcom");
+
+        for(Status s: tweetsAmigo){
+
+            println s.getText();
+
+        }
+
+    }
+
 }

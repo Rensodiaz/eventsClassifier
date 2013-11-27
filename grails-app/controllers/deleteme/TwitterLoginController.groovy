@@ -255,6 +255,13 @@ class TwitterLoginController {
 
     }
 
+    def timeLineAmigo(){
+
+        println "Entrando a timeline amigo"
+        twitterService.timeLineAmigo();
+        render "realizado."
+
+    }
     def xml(){
 
        ResponseList<Status> tweetsList =  twitterService.getTweets();
