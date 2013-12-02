@@ -107,15 +107,29 @@ class TwitterService {
         return l;
     }
 
-    public void timeLineAmigo(){
+    public List<String> timeLineAmigo(){
 
-        ResponseList<Status> tweetsAmigo = twitter.getUserTimeline("deswebcom");
 
-        for(Status s: tweetsAmigo){
+        ResponseList<Status> tweetsAmigo;
+        List<String> listaTweets = new ArrayList<String>();
+        String[] usuarios = ["deswebcom", "Eventscomdo", "EventPlusDR", "MomaAfterWork1", "jmartin3z", "LuisMCE"]
 
-            println s.getText();
+        Paging paging = new Paging(2, 60);
+
+
+        for(String usr: usuarios){
+
+            tweetsAmigo = twitter.getUserTimeline(usr, paging);
+
+            for(Status e: tweetsAmigo){
+
+                listaTweets.add(e.getText());
+
+            }
 
         }
+
+        return listaTweets;
 
     }
 

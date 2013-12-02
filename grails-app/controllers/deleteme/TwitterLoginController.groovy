@@ -264,50 +264,52 @@ class TwitterLoginController {
     }
     def xml(){
 
-       ResponseList<Status> tweetsList =  twitterService.getTweets();
-        println(tweetsList);
-        for (Status t : tweetsList){
+        List<String> listaTweets =  twitterService.timeLineAmigo();
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+        for(String tweet: listaTweets){
+                               println tweet;
             try {
 
-                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
 
                 // root elements
                 Document doc = docBuilder.newDocument();
-                Element rootElement = doc.createElement("ttttt");
-                doc.appendChild(rootElement);
+                Element tweets = doc.createElement("tweets");
+                doc.appendChild(tweets);
 
                 // staff elements
-                Element staff = doc.createElement("Staff");
-                rootElement.appendChild(staff);
+//                Element staff = doc.createElement("Staff");
+//                rootElement.appendChild(staff);
 
                 // set attribute to staff element
-                Attr attr = doc.createAttribute("id");
-                attr.setValue("1");
-                staff.setAttributeNode(attr);
+                Attr attr = doc.createAttribute("tweet");
+                attr.setValue(tweet);
+                tweets.setAttributeNode(attr);
 
                 // shorten way
                 // staff.setAttribute("id", "1");
 
-                // firstname elements
-                Element firstname = doc.createElement("firstname");
-                firstname.appendChild(doc.createTextNode("yong"));
-                staff.appendChild(firstname);
-
-                // lastname elements
-                Element lastname = doc.createElement("lastname");
-                lastname.appendChild(doc.createTextNode("mook kim"));
-                staff.appendChild(lastname);
-
-                // nickname elements
-                Element nickname = doc.createElement("nickname");
-                nickname.appendChild(doc.createTextNode("mkyong"));
-                staff.appendChild(nickname);
-
-                // salary elements
-                Element salary = doc.createElement("salary");
-                salary.appendChild(doc.createTextNode("100000"));
-                staff.appendChild(salary);
+//                // firstname elements
+//                Element firstname = doc.createElement("firstname");
+//                firstname.appendChild(doc.createTextNode("yong"));
+//                staff.appendChild(firstname);
+//
+//                // lastname elements
+//                Element lastname = doc.createElement("lastname");
+//                lastname.appendChild(doc.createTextNode("mook kim"));
+//                staff.appendChild(lastname);
+//
+//                // nickname elements
+//                Element nickname = doc.createElement("nickname");
+//                nickname.appendChild(doc.createTextNode("mkyong"));
+//                staff.appendChild(nickname);
+//
+//                // salary elements
+//                Element salary = doc.createElement("salary");
+//                salary.appendChild(doc.createTextNode("100000"));
+//                staff.appendChild(salary);
 
                 // write the content into xml file
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -327,7 +329,72 @@ class TwitterLoginController {
             } catch (TransformerException tfe) {
                 tfe.printStackTrace();
             }
+
         }
+//       ResponseList<Status> tweetsList =  twitterService.getTweets();
+//        println(tweetsList);
+//        for (Status t : tweetsList){
+//            try {
+//
+//                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+//                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+//
+//                // root elements
+//                Document doc = docBuilder.newDocument();
+//                Element rootElement = doc.createElement("ttttt");
+//                doc.appendChild(rootElement);
+//
+//                // staff elements
+//                Element staff = doc.createElement("Staff");
+//                rootElement.appendChild(staff);
+//
+//                // set attribute to staff element
+//                Attr attr = doc.createAttribute("id");
+//                attr.setValue("1");
+//                staff.setAttributeNode(attr);
+//
+//                // shorten way
+//                // staff.setAttribute("id", "1");
+//
+//                // firstname elements
+//                Element firstname = doc.createElement("firstname");
+//                firstname.appendChild(doc.createTextNode("yong"));
+//                staff.appendChild(firstname);
+//
+//                // lastname elements
+//                Element lastname = doc.createElement("lastname");
+//                lastname.appendChild(doc.createTextNode("mook kim"));
+//                staff.appendChild(lastname);
+//
+//                // nickname elements
+//                Element nickname = doc.createElement("nickname");
+//                nickname.appendChild(doc.createTextNode("mkyong"));
+//                staff.appendChild(nickname);
+//
+//                // salary elements
+//                Element salary = doc.createElement("salary");
+//                salary.appendChild(doc.createTextNode("100000"));
+//                staff.appendChild(salary);
+//
+//                // write the content into xml file
+//                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+//                Transformer transformer = transformerFactory.newTransformer();
+//                DOMSource source = new DOMSource(doc);
+//                StreamResult result = new StreamResult(new File("C:\\pinga\\file.xml"));
+//
+//                // Output to console for testing
+//                // StreamResult result = new StreamResult(System.out);
+//
+//                transformer.transform(source, result);
+//
+//                System.out.println("File saved!");
+//
+//            } catch (ParserConfigurationException pce) {
+//                pce.printStackTrace();
+//            } catch (TransformerException tfe) {
+//                tfe.printStackTrace();
+//            }
+//        }
     }
 
 }
